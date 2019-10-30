@@ -71,7 +71,69 @@ $(document).ready(function(){
     $(paging).append(custom_paging);
 
 
+    $(".dropdown-menu li a").click(function(){
+        $(this).parents(".dropdown").find('.dropdown-toggle').html($(this).text() + ' <span class="caret"></span>');
+        $(this).parents(".dropdown").find('.dropdown-toggle').val($(this).data('value'));
+    });
 
+
+
+    if($(window).innerWidth() < 991){
+        $('.special_offers .tab-pane').each(function(){
+
+            var pr_paging = $(this).find('.pr_paging');
+            var pr_first = $(this).find('span.pr_first');
+            var pr_last = $(this).find('span.pr_last');
+            var pr_slider=$(this).find('.products_mobile_slider');
+            var pr_slider_item=$(pr_slider).find('.list_item');
+            var pr_slider_prev=$(this).find('.pr_slider_prev');
+            var pr_slider_next=$(this).find('.pr_slider_next');
+
+            pr_slider.on('init reInit afterChange', function (event, slick, currentSlide, nextSlide) {
+                var i = (currentSlide ? currentSlide : 0) + 1;
+                pr_first.html('0'+i);
+                pr_last.html('0'+slick.slideCount);
+            });
+
+            if($(pr_slider_item).length >3){
+                $(pr_slider).slick({
+                    slidesToShow: 3,
+                    slidesToScroll: 1,
+                    arrows: false,
+                    dots:true,
+                    dotsClass: 'pr_custom_paging',
+                    responsive: [
+                        {
+                            breakpoint: 767,
+                            settings: {
+                                slidesToShow: 2,
+                            }
+                        },
+                        {
+                            breakpoint: 575,
+                            settings: {
+                                slidesToShow: 1,
+                                dots:true
+                            }
+                        }
+                    ]
+                });
+            }
+
+
+            var pr_custom_paging=$(pr_slider).find('.pr_custom_paging');
+            $(pr_paging).append(pr_custom_paging);
+
+            $(pr_slider_prev).click(function(){
+                $(pr_slider).slick('slickPrev');
+            });
+            $(pr_slider_next).click(function(){
+                $(pr_slider).slick('slickNext');
+            });
+
+
+        });
+    }
 
 
 
