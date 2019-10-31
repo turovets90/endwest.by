@@ -72,8 +72,7 @@ $(document).ready(function(){
 
 
     $(".dropdown-menu li a").click(function(){
-        $(this).parents(".dropdown").find('.dropdown-toggle').html($(this).text() + ' <span class="caret"></span>');
-        $(this).parents(".dropdown").find('.dropdown-toggle').val($(this).data('value'));
+        $(this).parents(".dropdown").find('.dropdown-toggle').html($(this).text());
     });
 
 
@@ -252,6 +251,21 @@ $(document).ready(function(){
     });
 
 
+
+
+    $(".select li span").click(function(){
+        $(this).parents(".dropdown").find('.dropdown-toggle').html($(this).text());
+        $(this).parents(".dropdown").find('.dropdown-toggle').val($(this).data('value'));
+    });
+
+
+    $('.filter_toggler').on('click',function () {
+        $('.filter_block').addClass('mf_show');
+        $('.f_close').on('click',function () {
+            $('.filter_block').removeClass('mf_show');
+        });
+        return false;
+    });
 
 
 
