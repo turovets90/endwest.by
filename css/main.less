@@ -4010,10 +4010,19 @@ h1, .h1{
   @media (max-width:1200px){
     margin-bottom: 40px;
   }
+  @media (max-width:575px){
+    margin-right: -3px;
+    margin-left: -3px;
+  }
 
   li{
     margin-right: 6px;
     margin-bottom: 6px;
+    @media (max-width:575px){
+      margin-right:0;
+      width: 33.33%;
+      padding: 0 3px;
+    }
     &.hidden{
       display: none;
     }
@@ -4027,6 +4036,9 @@ h1, .h1{
       font-weight: 500;
       font-size: 14px;
       color: @black;
+      @media (max-width:575px){
+        padding: 5px 5px; font-size: 12px;
+      }
       &:hover, &:focus{
         border:2px solid @orange;
         text-decoration: none;
